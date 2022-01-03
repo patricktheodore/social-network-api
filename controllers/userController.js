@@ -39,7 +39,7 @@ module.exports = {
             )
             .catch((err) => res.status(500).json(err));
     },
-    deleteUser(req, res) {
+    deleteUser(req, res) { //removed user associated thoughts
         User.findOneAndDelete({ _id: req.params.userId })
             .then((user) =>
             !user
@@ -52,3 +52,9 @@ module.exports = {
             });
     },
 };
+
+// /api/users/:userId/friends/:friendId
+
+// POST to add a new friend to a user's friend list
+
+// DELETE to remove a friend from a user's friend list
