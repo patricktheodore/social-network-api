@@ -39,18 +39,23 @@ module.exports = {
             )
             .catch((err) => res.status(500).json(err));
     },
-    deleteUser(req, res) { //removed user associated thoughts
+// delete user and associated thoughts
+    deleteUser(req, res) {
         User.findOneAndDelete({ _id: req.params.userId })
-            .then((user) =>
+          .then((user) =>
             !user
-                ? res.status(404).json({ message: `No user with ID: ${req.params.userId}`})
-                : res.json(`Deleted: ${user.username}`)
-            )
-            .catch((err) => {
-                console.log(err);
-                res.status(500).json(err);
-            });
-    },
+              ? res.status(404).json({ message: 'No user with this id!' })
+              : Thought.deleteMany({ userId: req.params.userId })
+          )
+          .then((user) =>
+            !user
+              ? res
+                  .status(404)
+                  .json({ message: 'No thought with this Id!' })
+              : res.json({ message: 'Thought successfully deleted!' })
+          )
+          .catch((err) => res.status(500).json(err));
+      },
 };
 
 // /api/users/:userId/friends/:friendId
