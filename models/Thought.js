@@ -40,7 +40,7 @@ function formatDate(date) {
 }
 
 thoughtSchema.virtual('reactionCount').get(function() {
-    return this.reactionSchema.length;
+    return this.reactions.length;
 });
 
 const Thought = model('thought', thoughtSchema);

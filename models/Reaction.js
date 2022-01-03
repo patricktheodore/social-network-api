@@ -4,13 +4,14 @@
 // createdAt - date, default current timestamp, getter to format date on query
 // This will not be a model, but rather will be used as the reaction field's subdocument schema in the Thought model.
 
-const { Schema, Mongoose } = require('mongoose')
+const { Schema } = require('mongoose')
 const moment = require('moment');
 
 const reactionSchema = new Schema(
     {
         reactionId: {
             type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId(),
         },
         reactionBody: {
             type: String,
@@ -39,4 +40,4 @@ function formatDate(date) {
     moment(date).format('DD-MM-YYYY')
 }
 
-module.exports = { reactionSchema }
+module.exports = reactionSchema

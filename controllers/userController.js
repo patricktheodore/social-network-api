@@ -13,7 +13,7 @@ module.exports = {
             .select('-__v')
             .then((user) =>
             !user
-            ? res.status(404).json({ message: `No use with id: ${req.params.userId}`})
+            ? res.status(404).json({ message: `No user with id: ${req.params.userId}`})
             : res.json(user)
         )
         .catch((err) => res.status(500).json(err))
@@ -44,7 +44,7 @@ module.exports = {
             .then((user) =>
             !user
                 ? res.status(404).json({ message: `No user with ID: ${req.params.userId}`})
-                : res.json(user)
+                : res.json(`Deleted: ${user.username}`)
             )
             .catch((err) => {
                 console.log(err);
