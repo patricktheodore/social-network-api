@@ -52,7 +52,7 @@ module.exports = {
                     ? res
                         .status(404)
                         .json({ message: 'No thought with this Id!' })
-                    : res.json({ message: 'Thought successfully deleted!' })
+                    : res.json({ message: 'User successfully deleted!' })
             )
             .catch((err) => res.status(500).json(err));
     },
